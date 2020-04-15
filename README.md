@@ -1,4 +1,4 @@
-### Java 学习记录 :pencil:
+### Java :pencil:学习记录 
 ---
 :star: [JavaSE基础](https://github.com/Cynaith/Java-Daily-Interview/blob/master/JavaSE%E5%9F%BA%E7%A1%80/JavaSE%E5%9F%BA%E7%A1%80.md)
 <br/>
