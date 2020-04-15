@@ -1,6 +1,5 @@
 ### Java学习记录
 <br/>
-<br/>
 :books: :closed_book: :green_book: :blue_book: :orange_book: :notebook: :notebook_with_decorative_cover:
 <br/> 
 
