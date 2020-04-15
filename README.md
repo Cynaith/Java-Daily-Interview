@@ -1,7 +1,4 @@
-### Java学习记录
-<br/>
-:books: :closed_book: :green_book: :blue_book: :orange_book: :notebook: :notebook_with_decorative_cover:
-<br/> 
+### Java学习记录 :books: :closed_book: :green_book: :blue_book: :orange_book: :notebook: :notebook_with_decorative_cover:
 
 :closed_book: [JavaSE基础](https://github.com/Cynaith/Java-Daily-Interview/blob/master/JavaSE%E5%9F%BA%E7%A1%80/JavaSE%E5%9F%BA%E7%A1%80.md)
 <br/>
