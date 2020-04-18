@@ -12,7 +12,7 @@
 :orange_book: JavaWeb高级
 <br/>
 <br/>
-:notebook: [Effective Java]()
+:notebook: [Effective Java](https://github.com/Cynaith/Java-Daily-Interview/blob/master/EffectiveJava/EffectiveJava.md)
 <br/>
 <br/>
 :notebook_with_decorative_cover: []()
