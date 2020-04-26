@@ -14,8 +14,6 @@ public class 动态代理 {
         职工 worker = (职工)dynamicProxy.newInstance();
         worker.work();
     }
-
-
 }
 interface 职工{
     void work();
@@ -45,7 +43,7 @@ class DynamicProxy{
     }
 
     public Object newInstance(){
-        Class<?> clas = this.helper.getClass();
+        Class<?> clas = this.object.getClass();
         return Proxy.newProxyInstance(clas.getClassLoader(), clas.getInterfaces(), new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -56,5 +54,4 @@ class DynamicProxy{
             }
         });
     }
-
 }
