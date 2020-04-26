@@ -1,5 +1,8 @@
 package com.ly.interview.设计模式;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * @USER: lynn
  * @DATE: 2020/4/26
@@ -10,8 +13,20 @@ public class 策略模式 {
             System.out.println("微信付钱"+money);
         });
         context.付钱(100);
-    }
 
+        Integer[] integers = {
+                new Integer(1),
+                new Integer(3),
+                new Integer(5)
+        } ;
+        Arrays.sort(integers,new Comparator(){
+            @Override
+            public int compare(Object o1, Object o2) {
+                return ((Integer) o2).intValue()-((Integer) o1).intValue();
+            }
+        });
+        System.out.println(Arrays.toString(integers));
+    }
 }
 @FunctionalInterface
 interface 支付{
