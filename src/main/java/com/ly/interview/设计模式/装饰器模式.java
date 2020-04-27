@@ -1,0 +1,71 @@
+package com.ly.interview.设计模式;
+
+/**
+ * @USER: lynn
+ * @DATE: 2020/4/27
+ **/
+public class 装饰器模式 {
+    public static void main(String[] args) {
+        手机父类 iPhone = new 苹果手机();
+        手机装饰 加个壳 = new 手机壳(iPhone);
+        手机装饰 贴个膜 = new 贴膜(iPhone);
+    }
+}
+
+abstract class 手机父类{
+    protected String description;
+    public void 外观(){
+        System.out.println(description);
+    }
+}
+class 安卓手机 extends 手机父类{
+    public 安卓手机() {
+        description = "安卓手机";
+    }
+}
+class 苹果手机 extends 手机父类{
+    public 苹果手机() {
+        description = "苹果手机";
+    }
+}
+
+abstract class 手机装饰 extends 手机父类{
+    private 手机父类 phone;
+
+    public 手机装饰(手机父类 phone) {
+        this.phone = phone;
+    }
+
+    void 输出外观(){
+        if (phone!=null)
+            phone.外观();
+    }
+}
+
+class 手机壳 extends 手机装饰{
+
+    public 手机壳(手机父类 phone) {
+        super(phone);
+        this.输出外观();
+    }
+
+    @Override
+    void 输出外观() {
+        super.输出外观();
+        System.out.println("增加手机壳");
+    }
+}
+
+class 贴膜 extends 手机装饰{
+
+    public 贴膜(手机父类 phone) {
+        super(phone);
+        this.输出外观();
+    }
+
+    @Override
+    void 输出外观() {
+        super.输出外观();
+        System.out.println("贴膜");
+    }
+}
