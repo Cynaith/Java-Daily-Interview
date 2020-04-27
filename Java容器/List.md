@@ -39,7 +39,7 @@
           if (minCapacity - elementData.length > 0)
           grow(minCapacity);
         }
-    ```
+  ```
     1. 使用calculateCapacity()计算所需最小容量
     2. 如果所需最小容量 > 数组长度; 调用grow()方法扩容<br/>
     ```java
@@ -53,7 +53,7 @@
           // minCapacity is usually close to size, so this is a win:
              elementData = Arrays.copyOf(elementData, newCapacity); 
         }
-    ```
+  ```
     1. 扩容1.5倍
     2. 调用Arrays.copyOf()方法 
     ```java
