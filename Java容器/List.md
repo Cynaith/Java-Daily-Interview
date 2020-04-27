@@ -28,7 +28,7 @@
     1. 先通过ensureCapacityInternal()方法检查是否需要扩容
     2. 在结尾插入元素
     <br/>
-    检查是否扩容:<br/>
+    检查是否扩容
     ```java
       private void ensureCapacityInternal(int minCapacity) {
           ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
