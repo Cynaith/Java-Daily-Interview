@@ -29,7 +29,7 @@
     2. 在结尾插入元素
     <br/>
     检查是否扩容
-    ```java
+  ```java
       private void ensureCapacityInternal(int minCapacity) {
           ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
       }
@@ -39,7 +39,7 @@
           if (minCapacity - elementData.length > 0)
           grow(minCapacity);
       }
-    ```
+  ```
     1. 使用calculateCapacity()计算所需最小容量
     2. 如果所需最小容量 > 数组长度; 调用grow()方法扩容<br/>
     ```java
