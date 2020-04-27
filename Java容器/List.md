@@ -28,9 +28,9 @@
     1. 先通过ensureCapacityInternal()方法检查是否需要扩容
     2. 在结尾插入元素
     <br/>
-    检查是否扩容:
+    检查是否扩容:<br/>
     ```java
-          private void ensureCapacityInternal(int minCapacity) {
+  private void ensureCapacityInternal(int minCapacity) {
               ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
           }
           private void ensureExplicitCapacity(int minCapacity) {
@@ -41,7 +41,7 @@
           }
     ```
     1. 使用calculateCapacity()计算所需最小容量
-    2. 如果所需最小容量 > 数组长度; 调用grow()方法扩容
+    2. 如果所需最小容量 > 数组长度; 调用grow()方法扩容<br/>
     ```java
           private void grow(int minCapacity) {
               int oldCapacity = elementData.length;
