@@ -90,7 +90,6 @@
 ### 获取元素(get())
 ### 更新元素(set())
 ### 删除元素(remove())
-### Vector与ArrayList区别
 
 ---
 ## LinkedList
