@@ -112,7 +112,8 @@ public V put(K key, V value) {
 final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
         // tab 哈希数组，p 该哈希桶的首节点，n hashMap的长度，i 计算出的数组下标
-        Node<K,V>[] tab; Node<K,V> p; int n, i;
+        Node<K,V>[] tab; Node<K,V> p; 
+        int n, i;
         // 获取长度并进行扩容，使用的是懒加载，table一开始是没有加载的，等put后才开始加载
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
