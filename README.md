@@ -12,6 +12,9 @@
 :orange_book: [JavaWeb面试](https://github.com/Cynaith/Java-Daily-Interview/blob/master/JavaWeb%E9%9D%A2%E8%AF%95/JavaWeb%E9%9D%A2%E8%AF%95.md)
 <br/>
 <br/>
+:green_book: [MySQL](https://github.com/Cynaith/Java-Daily-Interview/blob/master/MySQL/MySQL.md)
+<br/>
+<br/>
 :notebook: [Effective Java](https://github.com/Cynaith/Java-Daily-Interview/blob/master/EffectiveJava/EffectiveJava.md)
 <br/>
 <br/>
