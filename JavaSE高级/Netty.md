@@ -12,4 +12,14 @@
 - Handler
     - 在ChannelPipeline中可以放入用户自定义的Handler，用于处理具体的业务处理，这里面也包括解码器和编码器这两种重要的Handler。
 
+### 粘包和拆包
+tcp是流式套接字，这个就是造成了收到的内容和传输的的断句是不同的。
+这个可以类比古代没有标点，断句就可能有多种的变化。例如“没有鸡鸭也可以"这句。
+你可能收到是的没有鸡鸭也可以，也可能收到的是没有鸡，然后又收到鸭也可以。
+粘包说的是两次发送的一次收到了，拆包则是一次发送的，分两次收到。
 
+- Netty处理
+    - 自定义分隔符
+        - `channel.pipeline().addLast(new DelimiterBasedFrameDecoder(10000, Unpooled.copiedBuffer("$".getBytes())));`
+    - 定长解析器
+        - `channel.pipeline().addLast(new FixedLengthFrameDecoder(1));`
