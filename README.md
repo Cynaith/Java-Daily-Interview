@@ -18,5 +18,8 @@
 :notebook: [Effective Java](https://github.com/Cynaith/Java-Daily-Interview/blob/master/EffectiveJava/EffectiveJava.md)
 <br/>
 <br/>
+:closed_book: [图解HTTP](https://github.com/Cynaith/Java-Daily-Interview/blob/master/%E5%9B%BE%E8%A7%A3HTTP/%E5%9B%BE%E8%A7%A3HTTP.md)
+<br/>
+<br/>
 :notebook_with_decorative_cover: [计算机网络](https://github.com/Cynaith/Java-Daily-Interview/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md)
 
