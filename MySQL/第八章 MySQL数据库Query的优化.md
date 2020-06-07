@@ -193,3 +193,12 @@ MySQL中索引的限制:
 #### DISTINCT 的实现与优化
 DISTINCT与GROUP BY同样可以通过松散索引扫描或者紧凑索引扫描来实现，在无法使用DISTINCT时，MySQL只能通过临时表来完成。(仅DISTINCT的Query无法使用索引时，不会对临时表数据进行filesort，如果使用Group By 就无法避免filesort)
 
+- 松散索引  
+`explain select distinct id from user\G` 的 Extra 为 `Using index for group-by`  
+在实现 DISTINCT 的过程中，同样也是需要分组的，然后再从每组数据中取出一条返回给客户端。
+- 紧凑索引  
+使用where时，会先(Using Where)回表扫描，再利用索引直接Using index。
+- 无法单独使用索引  
+会使用临时表
+- 与Group By结合  
+使用聚合函数会filesort
