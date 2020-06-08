@@ -10,17 +10,17 @@
 
 [第五章 MySQL备份与恢复](https://github.com/Cynaith/Java-Daily-Interview/blob/master/MySQL/%E7%AC%AC%E4%BA%94%E7%AB%A0%20MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D.md)
 
-[第六章 影响MySQL性能的相关因素]()
+[第六章 影响MySQL性能的相关因素](https://github.com/Cynaith/Java-Daily-Interview/blob/master/MySQL/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%BD%B1%E5%93%8DMySQL%E6%80%A7%E8%83%BD%E7%9A%84%E7%9B%B8%E5%85%B3%E5%9B%A0%E7%B4%A0.md)
 
-[第七章 MySQL数据库锁定机制]()
+[第七章 MySQL数据库锁定机制](https://github.com/Cynaith/Java-Daily-Interview/blob/master/MySQL/%E7%AC%AC%E4%B8%83%E7%AB%A0%20MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81%E5%AE%9A%E6%9C%BA%E5%88%B6.md)
 
-[第八章 MySQL数据库Query的优化]()
+[第八章 MySQL数据库Query的优化](https://github.com/Cynaith/Java-Daily-Interview/blob/master/MySQL/%E7%AC%AC%E5%85%AB%E7%AB%A0%20MySQL%E6%95%B0%E6%8D%AE%E5%BA%93Query%E7%9A%84%E4%BC%98%E5%8C%96.md)
 
-[第九章 MySQL数据库Schema设计的性能优化]()
+[第九章 MySQL数据库Schema设计的性能优化](https://github.com/Cynaith/Java-Daily-Interview/blob/master/MySQL/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20MySQL%E6%95%B0%E6%8D%AE%E5%BA%93Schema%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
 
-[第十章 MySQL性能优化]()
+[第十章 MySQL性能优化](https://github.com/Cynaith/Java-Daily-Interview/blob/master/MySQL/%E7%AC%AC%E5%8D%81%E7%AB%A0%20MySQL%20Server%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
 
-[第十一章 常用存储引擎优化]()
+[第十一章 常用存储引擎优化](https://github.com/Cynaith/Java-Daily-Interview/blob/master/MySQL/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E5%B8%B8%E7%94%A8%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96.md)
 
 [第十二章 MySQL可扩展设计的基本原则]()
 
