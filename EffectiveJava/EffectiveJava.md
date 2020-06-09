@@ -19,6 +19,28 @@
     - 类如果不含公有的或者受保护的构造函数，就不能被子类化
     - 与其他静态方法没有任何区别
 #### 使用私有构造函数强化singleton属性
+实现singleton有两种方法，其都要把构造函数保持为私有的，并且提供一个静态成员，以便客户端能够访问该类唯一的实例。
+- 第一种方法公有静态成员是一个final域。  
+  第一种方法的好处在于性能上稍微领先，但是一个优秀的JVM实现应该能够通过将静态工厂方法的调用内联化，来消除这种差别
+- 第二种方法提供了一个公有静态工厂方法。    
+  第二种方法的好处在于灵活，在不改变API的前提，可以将类做成singleton或者不做。
+  
+使singleton变为可序列化的，不能仅仅在声明中加上`implements Serializable` 。为了维护singleton，要提供一个readResolve方法。 
+```java
+    private Object readResolve() throws ObjectStreamException{
+        return INSTANCE;
+    }
+```
+
 #### 通过私有构造函数强化不可实例的能力
+企图将一个类做成抽象类来强制该类不可被实例化，这是行不通的。有一些简单的习惯用法可以确保一个类不可被实例化。
+```java
+public class UtilityClass{
+    private UtilityClass(){
+        // This constructor will never be invoked
+    }
+}
+```
 #### 避免创建重复的对象
+
 #### 消除过期的对象引用
