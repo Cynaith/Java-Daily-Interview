@@ -24,5 +24,8 @@
 :notebook_with_decorative_cover: [计算机网络](https://github.com/Cynaith/Java-Daily-Interview/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md)
 <br/>
 <br/>
+:orange_book: [我的第一本算法书](https://github.com/Cynaith/Java-Daily-Interview/blob/master/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E7%AE%97%E6%B3%95%E4%B9%A6/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E7%AE%97%E6%B3%95%E4%B9%A6.md)
+<br/>
+<br/>
 :green_book: [cassandra]()
 
