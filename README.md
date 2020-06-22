@@ -27,5 +27,5 @@
 :orange_book: [我的第一本算法书](https://github.com/Cynaith/Java-Daily-Interview/blob/master/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E7%AE%97%E6%B3%95%E4%B9%A6/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E7%AE%97%E6%B3%95%E4%B9%A6.md)
 <br/>
 <br/>
-:green_book: [cassandra]()
+:green_book: [cassandra](https://github.com/Cynaith/Java-Daily-Interview/blob/master/cassandra/Cassandra%E7%9B%AE%E5%BD%95.md)
 
