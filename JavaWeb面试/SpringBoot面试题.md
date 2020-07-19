@@ -39,3 +39,15 @@
 - Spring Boot
     - Spring 和 Spring MVC 的问题在于需要配置大量参数
     - Spring Boot通过自动配置来解决此问题。
+
+### Spring Boot 配置加载顺序  
+(先加载properties文件)
+1. 当前项目目录下的一个/config子目录
+2. 当前项目目录
+3. 项目的resources即一个classpath下的/config包
+4. 项目的resources即classpath根路径（root）
+   
+- 配置的属性使用最先读取到的
+- 创建SpringBoot项目时，一般的配置文件放置在项目的resources目录下，因为配置文件的修改，通过热部署不用重新启动项目，而热部署的作用范围是classpath下
+
+### Spring Boot 热部署
