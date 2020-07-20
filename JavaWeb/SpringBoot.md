@@ -1,4 +1,4 @@
-## Spring Boot面试题
+## Spring Boot
 ### Spring Boot有哪些优点
 1. 减少开发，测试时间
 2. 使用JavaConfig避免使用XML
@@ -50,4 +50,7 @@
 - 配置的属性使用最先读取到的
 - 创建SpringBoot项目时，一般的配置文件放置在项目的resources目录下，因为配置文件的修改，通过热部署不用重新启动项目，而热部署的作用范围是classpath下
 
-### Spring Boot 热部署
+### Spring Boot 热部署  
+- 使用springloaded配置pom.xml文件，使用mvn spring-boot:run启动
+- 使用springloaded本地加载启动，配置jvm参数 -javaagent:<jar包地址> -noverify
+- 使用devtools工具包，操作简单，但是每次需要重新部署                               
