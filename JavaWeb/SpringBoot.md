@@ -54,3 +54,17 @@
 - 使用springloaded配置pom.xml文件，使用mvn spring-boot:run启动
 - 使用springloaded本地加载启动，配置jvm参数 -javaagent:<jar包地址> -noverify
 - 使用devtools工具包，操作简单，但是每次需要重新部署                               
+
+### 热部署底层原理  
+底层使用两个ClassLoader，一个ClassLoader加载不会改变的类(三方jar包)，另一个ClassLoader加载会更改的类(称为restart ClassLoader)
+
+### Spring Boot安全设计
+- 在生产中使用HTTPS
+- 使用Snyk检查依赖关系
+- 升级到最新版本
+- 启用CSRF保护
+- 使用内容安全策略防止XSS攻击
+- 使用OpenID Connect进行身份验证
+- 管理密码？使用密码哈希！
+- 安全地存储秘密
+- 使用OWASP的ZAP测试您的应用程序
