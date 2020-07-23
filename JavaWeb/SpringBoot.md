@@ -68,3 +68,141 @@
 - 管理密码？使用密码哈希！
 - 安全地存储秘密
 - 使用OWASP的ZAP测试您的应用程序
+
+### Spring Boot自动配置原理
+#### SpringApplication的run方法  
+首先开启一个SpringApplicationRunListeners监听器，然后创建应用上下文ConfigurableApplicationContext，
+并通过该上下文加载应用所需的类和环境配置，最后启用一个应用实例。
+```java
+public ConfigurableApplicationContext run(String... args) {
+//        用于记录时间
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        ConfigurableApplicationContext context = null;
+        自定义SpringApplication启动错误的回调接口
+        Collection<SpringBootExceptionReporter> exceptionReporters = new ArrayList();
+//        设置jdk系统属性java.awt.headless
+        this.configureHeadlessProperty();
+//        获取启动时监听器实例
+        SpringApplicationRunListeners listeners = this.getRunListeners(args);
+        listeners.starting();
+
+        Collection exceptionReporters;
+        try {
+//            参数封装，也就是在命令行下启动应用带的参数，如--server.port=9000
+            ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);
+//            准备环境：1、加载外部化配置的资源到environment；2、触发ApplicationEnvironmentPreparedEvent事件
+            ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);
+            this.configureIgnoreBeanInfo(environment);
+            Banner printedBanner = this.printBanner(environment);
+//            创建应用上下文，并实例化了其三个属性：reader、scanner和beanFactory
+            context = this.createApplicationContext();
+//             获取异常报道器，即加载spring.factories中的SpringBootExceptionReporter实现类
+            exceptionReporters = this.getSpringFactoriesInstances(SpringBootExceptionReporter.class, new Class[]{ConfigurableApplicationContext.class}, context);
+//            准备上下文
+            this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);
+            this.refreshContext(context);
+            this.afterRefresh(context, applicationArguments);
+            stopWatch.stop();
+            if (this.logStartupInfo) {
+                (new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), stopWatch);
+            }
+
+            listeners.started(context);
+            this.callRunners(context, applicationArguments);
+        } catch (Throwable var10) {
+            this.handleRunFailure(context, var10, exceptionReporters, listeners);
+            throw new IllegalStateException(var10);
+        }
+
+        try {
+            listeners.running(context);
+            return context;
+        } catch (Throwable var9) {
+            this.handleRunFailure(context, var9, exceptionReporters, (SpringApplicationRunListeners)null);
+            throw new IllegalStateException(var9);
+        }
+    }
+```
+#### 创建应用上下文  
+上文通过调用this.createApplicationContext方法来获取应用上下文。
+```java
+protected ConfigurableApplicationContext createApplicationContext() {
+        Class<?> contextClass = this.applicationContextClass;
+        if (contextClass == null) {
+            try {
+                switch(this.webApplicationType) {
+                case SERVLET:
+                    contextClass = Class.forName("org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext");
+                    break;
+                case REACTIVE:
+                    contextClass = Class.forName("org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext");
+                    break;
+                default:
+                    contextClass = Class.forName("org.springframework.context.annotation.AnnotationConfigApplicationContext");
+                }
+            } catch (ClassNotFoundException var3) {
+                throw new IllegalStateException("Unable create a default ApplicationContext, please specify an ApplicationContextClass", var3);
+            }
+        }
+
+        return (ConfigurableApplicationContext)BeanUtils.instantiateClass(contextClass);
+    }
+```
+该方法会根据推断的应用类型实例化不同的ApplicationContext。
+
+**准备上下文**  
+```java
+private void prepareContext(ConfigurableApplicationContext context, ConfigurableEnvironment environment, SpringApplicationRunListeners listeners, ApplicationArguments applicationArguments, Banner printedBanner) {
+//        设置上下文的environment
+        context.setEnvironment(environment);
+//        应用上下文处理
+        this.postProcessApplicationContext(context);
+        在context refresh之前，对其应用ApplicationContextInitializer
+        this.applyInitializers(context);
+//        上下文准备
+        listeners.contextPrepared(context);
+//        打印启动日志和启动应用的Profile
+        if (this.logStartupInfo) {
+            this.logStartupInfo(context.getParent() == null);
+            this.logStartupProfileInfo(context);
+        }
+//        获取BeanFactory
+        ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
+//        注册单例Bean，命令行参数bean
+        beanFactory.registerSingleton("springApplicationArguments", applicationArguments);
+        if (printedBanner != null) {
+//        注册banner bean
+            beanFactory.registerSingleton("springBootBanner", printedBanner);
+        }
+
+        if (beanFactory instanceof DefaultListableBeanFactory) {
+            ((DefaultListableBeanFactory)beanFactory).setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
+        }
+
+        if (this.lazyInitialization) {
+            context.addBeanFactoryPostProcessor(new LazyInitializationBeanFactoryPostProcessor());
+        }
+
+        Set<Object> sources = this.getAllSources();
+        Assert.notEmpty(sources, "Sources must not be empty");
+//        将bean加载至应用上下文中
+        this.load(context, sources.toArray(new Object[0]));
+//        向上下文中添加ApplicationListener，并广播ApplicationPreparedEvent事件
+        listeners.contextLoaded(context);
+    }
+```
+prepareContext:  
+1. 将context中的environment替换成SpringApplication中创建的environment
+2. 将SpringApplication中的initializers应用到context中
+3. 加载两个单例bean到beanFactory中
+    1. 向beanFactory中注册了一个名叫springApplicationArguments的单例bean，该bean封装了我们的命令行参数；
+    2. 向beanFactory中注册了一个名叫springBootBanner的单例bean。
+4. 加载bean定义资源
+5. 将SpringApplication中的listeners注册到context中，并广播ApplicationPreparedEvent事件  
+
+**刷新应用上下文**  
+
+AbstractApplicationContext实现了ConfigurableApplicationContext接口，而ConfigurableApplicationContext接口继承自ApplicationContext，所以ApplicationContext能被强制转换成AbstractApplicationContext。
+而refresh方法会在哪个类中被调用取决于创建ApplicationContext时的应用环境，若是servlet应用，会调用ServletWebServerApplicationContext的refresh方法；是reactive应用，则会调用ReactiveWebServerApplicationContext的refresh方法。
+它们的refresh方法又会调用共有的父类GenericReactiveWebApplicationContext的refresh方法，从而进入spring-framework的刷新流程。
