@@ -68,7 +68,12 @@ Lock锁在刚出来的时候很多性能方面都比Synchronized锁要好，但�
 
 > 详情查看 《synchronized源码》文章
 ### *Atomic 底层实现原理
+通过Unsafe类，使用CAS方式来实现原子操作  
 
+弊端: 如果并发量很大的话，cpu会花费大量的时间在试错上面，相当于一个spin(自旋)的操作。
+如果并发量小的情况，这些消耗可以忽略不计。  
+
+优化: 并发量高的情况下可以使用LongAdder类实现。(内部的实现有点类似ConcurrentHashMap的分段锁)
 
 ### 公平锁
 线程将按照它们发出请求的顺序来获取锁
@@ -77,6 +82,7 @@ Lock锁在刚出来的时候很多性能方面都比Synchronized锁要好，但�
 - Lock
 - synchronized
 ### ReentrantLock
+
 ### 轻量级锁
 ### 偏向锁
 ### 分段锁
