@@ -81,9 +81,18 @@ Lock锁在刚出来的时候很多性能方面都比Synchronized锁要好，但�
 线程发出请求的时可以“插队”获取锁
 - Lock
 - synchronized
-### ReentrantLock
+### ReentrantLock  
+1. 实现公平锁
+ReentrantLock可以实现公平锁 `new ReentrantLock(true)`。
+2. 响应中断  
+一个线程获取不到锁不会一直等待。
+3. 限时等待
+通过tryLock方法来指定获取锁的最长时间。  
+
+实现核心:AQS 队列同步器
 
 ### 轻量级锁
+
 ### 偏向锁
 ### 分段锁
 ### 锁优化
