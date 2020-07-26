@@ -42,3 +42,10 @@
 5. HandlerAdapter将执行结果返回至DispatcherServlet
 6. DispatcherServlet将ModelAndView传给ViewResolver视图解析器
 7. DispatcherServlet将视图解析器返回的View渲染视图并返回给用户
+
+### Spring MVC结构
+#### Spring MVC单例模式如何保证性能  
+Java里有个API叫做ThreadLocal，spring单例模式下用它来切换不同线程之间的参数。用ThreadLocal是为了保证线程安全，
+实际上ThreadLoacal的key就是当前线程的Thread实例。单例模式下，spring把每个线程可能存在线程安全问题的参数值放进了ThreadLocal。
+这样虽然是一个实例在操作，但是不同线程下的数据互相之间都是隔离的，因为运行时创建和销毁的bean大大减少了，
+所以大多数场景下这种方式对内存资源的消耗较少，而且并发越高优势越明显。
