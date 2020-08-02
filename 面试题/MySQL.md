@@ -10,3 +10,5 @@
 ### 多个大表left join怎么优化
 
 ### MyISAM和Innodb区别
+
+### ❤MySQL事务的特性
