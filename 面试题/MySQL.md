@@ -8,3 +8,5 @@
 ### left/right/inner join区别
 
 ### 多个大表left join怎么优化
+
+### MyISAM和Innodb区别
