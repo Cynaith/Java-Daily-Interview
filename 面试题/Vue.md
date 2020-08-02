@@ -1,2 +1,27 @@
 # Vue
 ### Vue生命周期函数
+- 1.0版本
+    - created
+    - beforeCompile
+    - Compiled
+    - ready
+    - beforeDestory
+    - destroyed
+- 2.0版本
+    - beforeCreate
+    - created
+    - beforeMount
+    - mounted
+    - beforeUpdate
+    - updated
+    - beforeDestroy
+    - destroyed
+    
+- 3.0版本
+    - setup
+    - onBeforeMount
+    - onMounted
+    - onBeforeUpdate
+    - onUpdated
+    - onBeforeUnmount
+    - onUnmounted

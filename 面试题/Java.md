@@ -4,4 +4,19 @@
 
 ### 接口与抽象类
 
-### 
+### 线程的五种状态
+
+### Error和Exception
+
+### final、finalize、finally
+
+### Heap和Stack
+
+### Arrays.sort用的排序
+
+### synchronized和Lock的区别
+
+### Lock底层
+
+### synchronized底层
+
