@@ -11,4 +11,10 @@
 
 ### MyISAM和Innodb区别
 
-### ❤MySQL事务的特性
+### ❤MySQL事务的特性  
+ACID
+- 原子性（Atomicity）
+- 一致性（Consistency）
+- 隔离性（Isolation）
+- 持久性（Durability）
+### ❤MySQL悲观锁、乐观锁

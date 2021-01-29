@@ -1,34 +1,20 @@
 package com.ly.interview;
 
-import com.github.cynaith.jedis.Ledis;
+import org.springframework.beans.BeanUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.concurrent.*;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @autohr: Cynaith
  **/
-public class Test {
-
+public class Test{
     public static void main(String[] args) {
-
-
-        ExecutorService executorService =  Executors.newCachedThreadPool();
-        Future<?> future =  executorService.submit(new Runnable() {
-
-            @Override
-            public void run() {
-                int i =0;
-            }
-
-        });
-        try {
-            System.out.println(future.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        List<String> a = new ArrayList<>();
+        a.add("123");
+        a.add("214");
+        System.out.println(a.toString());
     }
 }
+

@@ -22,6 +22,7 @@ IOC实现对象之间的创建和依赖:
 ### 如何记录全局的接口日志
 - 拦截器实现HandlerInterceptor接口
     - 在preHandle()中接受Object handler 转型为 HandlerMethod对象，调用handler.getBean().getClass().getName()获取被拦截的类信息。
+    - 使用request.getRequestURI()获取uri
 - 网关
 - AOP
 ### Spring 声明事务的两种方式
