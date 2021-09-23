@@ -47,3 +47,148 @@ ElasticSearch 是一个分布式的免费开源搜索和分析引擎
   >   - [ElasticSearch7.x版本使用默认_doc作为type](https://www.elastic.co/guide/en/elasticsearch/reference/current/removal-of-types.html)
   > 
   
+### ElasticSearch Api
+- 创建索引
+    - `PUT test`
+- 查看索引
+    - `GET test` 
+        - aliases: 索引别名(一个索引别名可以映射多个真实索引)
+        - mappings: 对索引库中索引的字段名称及其数据类型进行定义
+        - setting: 索引配置
+- 测试索引是否存在
+    - `HEAD test`
+- 删除索引
+    - `DELETE test`
+
+- 添加mapping
+```http request
+PUT test/_mapping
+{
+  "properties": {
+    "title":{
+          "type": "text"
+        },
+        "images":{
+          "type": "text"
+        },
+        "price":{
+          "type": "integer"
+        }
+  }
+}
+```    
+
+- 添加数据
+```http request
+POST /test/_doc/{_id}
+{
+  "title" : "标题"
+}
+``` 
+    - 可以在post后面置指定文档id
+
+- 删除数据
+    -  `DELETE test/_doc/{_id}
+`
+- 查询全部
+```http request
+GET test/_search
+{
+    "query": {
+        "match_all":{}
+    }
+}
+```
+- 分词查询
+```http request
+GET test/_search
+{
+  "query": {
+    "match": {
+      "title":{
+        "query": "小米手机电视"
+      }
+    }
+  }
+}
+
+
+GET test/_search
+{
+  "query": {
+   "multi_match": {
+     "query": "小米出品",
+     "fields": ["title","subTitle"]
+   }
+  }
+}
+
+```
+
+- 范围查询(字段type = integer)
+    - gte 大于或大于等于 gt:大于
+    - lte 小于或小于等于 lt:小于
+```http request
+GET test/_search
+{
+  "query": {
+    "range": {
+      "price": {
+        "gte": 1999, 
+        "lte": 2999   
+      }
+    }
+  }
+}
+```
+
+- 过滤查询
+```http request
+GET test/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "title": "小米手机"
+          }
+        }
+      ],"filter": [
+        {
+          "range": {
+            "price": {
+              "gte": 2000,
+              "lte": 3000
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+- 排序
+```http request
+GET test/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "title": "手机"
+          }
+        }
+      ]
+    }
+  },"sort": [
+    {
+      "price": {
+        "order": "desc"
+      }
+    }
+  ]
+}
+```
