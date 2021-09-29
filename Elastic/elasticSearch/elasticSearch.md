@@ -192,3 +192,48 @@ GET test/_search
   ]
 }
 ```
+
+
+### Text 与 Keyword的区别
+
+- 为什么会出现text和keyword类型？
+    - Elastic Search 5.x及以后版本取消了`string`类型，拆分为`text`和`keyword`  
+    区别在于`text`会对字段进行分词处理，而`keyword`不会
+
+    
+- Text
+    - 会分词，然后进行索引
+    - 支持模糊、精确查询
+    - 不支持聚合
+    
+- keyword
+    - 不进行分词，直接索引
+    - 支持模糊、精确查询
+    - 支持聚合
+    
+- Dynamic Mapping
+    - 在使用 ES 的时，我们不需要事先定义好映射设置就可以直接向索引中导入文档。ES 可以自动实现每个字段的类型检测，并进行 mapping 设置，这个过程就叫动态映射
+    - 规则
+        - 例如传入的文档中字段price的值为12，那么price将被映射为long类型
+        - 字段addr的值为"192.168.0.1"，那么addr将被映射为ip类型
+        - 对于其他字段(title)而言，ES会将它们映射为text类型，但为了保留对这些字段做精确查询以及聚合的能力，又同时对它们做了keyword类型的映射
+        ```json
+        {
+         "foobar": {
+          "type": "text",
+          "fields": {
+             "keyword": {
+                 "type": "keyword",
+                 "ignore_above": 256
+              }
+          }
+         }
+        }
+         ```
+      在之后的查询中使用title是将title作为text类型查询，而使用title.keyword则是将title作为keyword类型查询。前者会对查询内容做分词处理之后再匹配，而后者则是直接对查询结果做精确匹配。
+      - ES的term query做的是精确匹配而不是分词查询，因此对text类型的字段做term查询将是查不到结果的（除非字段本身经过分词器处理后不变，未被转换或分词）。此时，必须使用 title.keyword来对title字段以keyword类型进行精确匹配。
+
+### 聚合(Aggregations)
+- 聚合的两个基础概念
+    - 桶(Buckets)：符合条件的文档的集合，相当于SQL中的group by。比如，在users表中，按“地区”聚合，一个人将被分到北京桶或上海桶或其他桶里；按“性别”聚合，一个人将被分到男桶或女桶
+    - 指标(Metrics)：基于Buckets的基础上进行统计分析，相当于SQL中的count,avg,sum等。比如，按“地区”聚合，计算每个地区的人数，平均年龄等
