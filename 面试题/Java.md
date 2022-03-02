@@ -23,6 +23,8 @@
         - FIFO原则: ArrayBlockingQueue
         - 优先级队列: PriorityBlockingQueue
 ### 接口与抽象类
+- 略
+- 接口负责定义public属性和方法，并且声明与其他对象的依赖关系，抽象类负责公共构造部分的实现，实现类准确的实现业务逻辑，同时在适当的时候对父类进行细化。
 
 ### ❤线程的五种状态
 - 开始状态（new）、就绪状态（runnable）、运行状态（running）、阻塞状态（blocked）、结束状态（dead）
