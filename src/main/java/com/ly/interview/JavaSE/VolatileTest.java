@@ -9,7 +9,6 @@ public class VolatileTest {
         final Counter counter = new Counter();
         for (int i = 0; i < 1000; i++) {
             new Thread(new Runnable() {
-                @Override
                 public void run() {
                     counter.inc();
                 }
@@ -19,7 +18,7 @@ public class VolatileTest {
     }
 }
 class Counter {
-    private volatile int count = 0;
+    private int count = 0;
     public void inc() {
         try {
             Thread.sleep(3);
